@@ -48,7 +48,7 @@ ui = dashboardPage(
         
         h2("Home"),
         p("Aanlysing trends in mental health in the workplace for the year of 2014. This dataset is from a 2014 survey that measures attitudes towards mental health and frequency of mental health disorders in the tech workplace"),
-        p("We have analysed the data based on gender, age, country and Employee Size."),
+        p("We have analysed the data based on gender, age and country."),
         p(HTML('&nbsp;')),
       ),
       
