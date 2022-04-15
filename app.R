@@ -4,7 +4,8 @@ library(ggplot2)
 library(dplyr)
 
 ####### R stuff ##########
-df = read.csv('./finals/survey_cleaned.csv', header = TRUE)
+df = read.csv('https://raw.githubusercontent.com/duckingbread/finals/main/survey_cleaned.csv', header = TRUE)
+
 
 vals = c("Have you sought treatment for a mental health condition?",
                  "If you have a mental health condition, do you feel that it interferes with your work?",
@@ -71,7 +72,7 @@ ui = dashboardPage(
         tabName = "gender",
         fluidPage(
           h2("Survey Results by gender"),
-          p("Select the dropdown to know the results of the survey based on age."),
+          p("Select the dropdown to know the results of the survey based on gender."),
           
           fluidRow(
             column(6,
@@ -87,7 +88,7 @@ ui = dashboardPage(
         tabName = "country",
         fluidPage(
           h2("Survey Results by country"),
-          p("Select the dropdown to know the results of the survey based on age."),
+          p("Select the dropdown to know the results of the survey based on country."),
           
           fluidRow(
             column(6,
@@ -103,7 +104,7 @@ ui = dashboardPage(
   )
 )
 
-str(df)
+
 
 ######## Server stuff ########
 
@@ -115,19 +116,19 @@ server = function(input, output) {
   output$age_bar_graph <- renderPlot(
     df %>% 
       ggplot(aes_string(x="Age", fill=input$select_age)) 
-    + geom_bar(position="stack") + labs(x = 'Age', y = 'Count', title ="testing", fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
+    + geom_bar(position="stack") + labs(x = 'Age', y = 'Count',  fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
   )
   
   output$gender_bar_graph <- renderPlot(
     df %>% 
       ggplot(aes_string(x="Gender", fill=input$select_gender)) 
-    + geom_bar(position="stack") + labs(x = 'Gender', y = 'Count', title ="testing", fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
+    + geom_bar(position="stack") + labs(x = 'Gender', y = 'Count',  fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
   )
   
   output$country_bar_graph <- renderPlot(
     df %>% 
       ggplot(aes_string(x="Country", fill=input$select_country)) 
-    + geom_bar(position="stack") + labs(x = 'Country', y = 'Count', title ="testing", fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
+    + geom_bar(position="stack") + labs(x = 'Country', y = 'Count', fill = 'Responses:') + theme(plot.title = element_text(face = 'bold'))
   )
   
 }
